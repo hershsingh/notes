@@ -1,0 +1,100 @@
+\input{preamble.tex}
+\begin{document}
+\chapter{Vector Spaces}
+
+A subset of $W$ of $\RR^n$ is a \emph{subspace} if it has the following proerties:
+\begin{enumerate}[(a)]
+    \item If $w,w'\in W$, then $w+w'\in W$
+    \item If $w\in W,\, c\in \RR$, then $cw\in W$
+    \item The zero vector is in $W$
+\end{enumerate}
+Note that (c) seems to be a special case of (b), by putting $c=0$. However, it is (c) which ensures that $W$ is not the empty set.
+
+\section{Fields}
+\label{sec:fields}
+
+The quintessential model for a field is the set of all complex numbers $\CC$.
+
+\begin{definition}
+    A \emph{field} $F$ is a set together with two composition laws
+    \begin{equation}
+       F\times F \xrightarrow{+} F \quad\text{and}\quad F\times F \xrightarrow{\times} F
+    \end{equation}
+    called \emph{addition}: $a+b \mapsto a+b$ and \emph{multiplication}: $a\times b \mapsto ab$, which satisfy these axioms
+    \begin{enumerate}[(i)]
+        \makethislistcompact % defined in the preamble
+
+        \item $F$ with addition, written as $F^+$, is an abelian group,
+        \item $F/\{0\}$ with multiplication, written as $F^\times$, is an abelian group,
+        \item \emph{distributive law: } For all $a,b,c\in F$, we have $a(b+c) = ab + ac$.
+    \end{enumerate}
+\end{definition}
+Note that axiom (iii) relates multiplication and addition.
+
+
+A very interesting example of a field is 
+\begin{align*}
+    \FF_p &= \{\overline 0, \overline 1 ,\dotsc, \overline {p-1}\} = \ZZ/\ZZ_p,
+\end{align*}
+where $p$ is a prime number. 
+\begin{lemma}
+   The characteritic of any field F is either zero or a prime number. 
+\end{lemma}
+\begin{proof}
+   Assume that the characteristic $m$ is neither zero nor prime. Then, it can be written as $m=rs$ for some positive integers $r,s$. Since we have
+   \begin{align*}
+        0 &= \overbrace{1 + \cdots + 1}^{m \text{ times}} 
+        = \overbrace{1 + \cdots + 1}^{r \text{ times}}  + \cdots  +1 .
+   \end{align*}
+   Writing $\overbrace{1 + \cdots + 1}^{r \text{ times}}=a$, we get 
+   \begin{equation*}
+        0 = \overbrace{a + \cdots + a}^{s \text{ times}} 
+        = a (\overbrace{1 + \cdots + 1}^{s \text{ times}}) \\
+   \end{equation*}
+   Now, either 
+   \begin{align*}
+        \overbrace{1 + \cdots + 1}^{s \text{ times}} = 0 \quad \text{ or }\quad
+        a = \overbrace{1 + \cdots + 1}^{r \text{ times}} =0.
+   \end{align*}
+   In either case, we have a contradiction.
+\end{proof}
+
+% section fields (end)
+
+
+
+\section{Problems}
+\label{sec:problems}
+\textbf{1.8}\\
+Let $p$ be a prime integer.
+\begin{enumerate}[(a)]
+    \item Fermat's theorem: $a^p \equiv a \mod p$ for every integer $a$.\\
+        This is a direct consequence of the fact that $\FF_p^\times$ is a cyclic group of order $p-1$.
+    \item Wilson's theorem: $(p-1)! \equiv -1 \mod p$.\\
+        The case with $p=2$ is trivial. Let $p>2$, which is odd.
+        Let $a$ be a primitive root of $\FF_p^\times$. We have
+        \begin{align*}
+            \{1,\dotsc,p-1\} &= \{a^1,\dotsc,a^{p-1}\} \\
+            \implies (p-1)! &= a^1 \cdots a^{p-2} a^{p-1}\\
+                &= a^{\frac{p(p-1)}{2}} 
+        \end{align*}
+        Since, $a^{p}\equiv a \mod p$ (by Fermat's theorem), then $(a^{p})^{(p-1)/2}\equiv a^{(p-1)/2} \mod p$. 
+
+        For some integer $x$, if we have $x^2 \equiv 1\mod p$, then
+        \begin{align*}
+            x^2 - 1 = (x-1)(x+1)  \equiv 0 \mod p\\
+            \implies x \equiv 1 \mod p\quad\text{or}\quad x\equiv -1 \mod p
+        \end{align*}
+        If $x=a^{(p-1)/2}$, then $x=1$ would mean that $a$ is not a primitive root, which is a contradiction. So, $a^{(p-1)/2} \equiv -1 \mod p$. Thus,
+        \begin{align*}
+            (p-1)! = a^{\frac{p(p-1)}{2}} &\equiv a^{\frac{p-1}{2}} \mod p \\
+            &\equiv -1 \mod p
+        \end{align*}
+        \qedsymbol
+\end{enumerate}
+
+
+% section problems (end)
+
+
+\end{document}

@@ -1,0 +1,90 @@
+%! TEX root=./qmech.tex
+\chapter{Symmetries in Quantum Mechanics}
+
+\section{Spatial Translation}
+\label{sec:spatial_translation}
+
+Consider the state $\ket {\alpha(t)}$ and the position space wavefunction $\psi_\alpha(x, t) = \<x | \alpha(t)\>$ associated with it.
+
+If we spatially translate the state by an amount $\Delta x = \rho$, we get the new state
+\begin{align*}
+    \psi'(x, t) &= \psi(x - \rho , t) \\
+        &= \psi(x,t) - \frac{\rho}{1!} \frac{\partial}{\partial x} \psi(x,t) 
++ \frac{\rho^2}{2!} \frac{\partial^2}{\partial x^2} \psi(x,t) + \cdots
+\end{align*}
+Amazingly, the above taylor series can be very succintly expressed with the exponential:
+\begin{align*}
+    \psi'(x,t) &= \exp\left({-\rho\ \frac{\partial }{\partial x}}\right) \psi(x,t)
+\end{align*}
+
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}[
+            axis/.style={densely dotted, thin, stealth-stealth} ,
+            plot/.style={thick, color=blue!30!black} 
+        ]
+        \coordinate (O) at (0,0);
+        \draw [axis] (-2.5,0) -- (3.5,0);
+        \draw [axis, -stealth] (0,0) -- +(0,1.5);
+
+        \draw node [above left] (A) at (0,1) {$\psi(x,t)$};
+        \node [above right] (A) at (1,1) {$\psi'(x,t) = \psi(x-\rho,t)$};
+        %\node at (1,0) {$\psi(x,t)$};
+
+        \draw [plot, domain=-2:2, opacity=0.5] plot function{exp(-x*x)};
+        \draw [plot, domain=-2:2, xshift=1cm] plot function{exp(-x*x)};
+
+        \draw [|-stealth, yshift=-0.2cm, thick] (0,0) -- (1,0) node [midway, below] {$\rho$};
+        \foreach \point in {(0,0), (1,0)} {
+            \draw [fill=black, opacity=0.5] \point circle (1pt) -- ++(0,1) ;
+        }
+
+    \end{tikzpicture}
+    \caption{Active transformation of the state vector.}
+\end{figure}
+
+Ofcourse, in three dimensions, 
+\begin{align*}
+    \psi'(\vec r,t) &= \exp \left(-\vec \rho \cdot \grad \right) \psi(\vec r,t)\\
+        &= U_r(\rho) \psi(\vec r,t)
+\end{align*}
+
+Recall that the momentum operator is just
+\begin{align*}
+    \hat {\vec p} = -\iota \hbar \grad
+\end{align*}
+So we get the \textbf{translation operator} to be
+\begin{align*}
+    \hat U_r(\rho) = \exp{\left( -\frac{\iota}{\hbar} \vec \rho\cdot \hat {\vec p} \right)}
+\end{align*}
+which is easily seen to be unitary, since $\hat{\vec p}$ is hermitian. It is in this sense that \emph{momentum is the generator of translations}.
+
+\subsection{Spatial homogeniety of Schr\"odinger equation}
+\label{sub:spatial_homogeniety_of_schr"odinger_equation}
+
+Imposing homogeniety of space on the Schr\"odinger equation means that the temporal evolution should be same for $\psi(\vec r,t)$ and $\psi'(\vec r,t)$. 
+\begin{align*}
+    \iota \hbar \frac{\partial \psi(\vec r,t)}{\partial t} &= \hat H \psi(\vec r,t) \\
+    \implies 
+    \iota \hbar \frac{\partial }{\partial t}\hat U_r^\dagger(\vec \rho) \psi'(\vec r,t) &= \hat H \hat U_r^\dagger(\vec \rho) \psi'(\vec r,t) \\
+    \implies 
+    \iota \hbar\ \hat U_r^\dagger(\vec \rho)\frac{\partial }{\partial t} \psi'(\vec r,t) &= \hat H \hat U_r^\dagger(\vec \rho) \psi'(\vec r,t) \\
+    \implies 
+    \iota \hbar\ \frac{\partial }{\partial t} \psi'(\vec r,t) &= \hat U_r(\vec \rho)\hat H \hat U_r^\dagger(\vec \rho) \psi'(\vec r,t) \\
+\end{align*}
+Now, if the $\psi'(\vec r,t)$ 
+\begin{align*}
+    \hat U_r(\vec \rho)\hat H \hat U_r^\dagger(\vec \rho) &= \hat H\\
+    \implies [\hat H, \hat U_r(\rho)] &=0
+\end{align*}
+Since $\rho$ is an arbitrary vector, we must have \todo{elaborate this}
+\begin{align*}
+    [\hat H, \hat {\vec p}] &=0
+\end{align*}
+Hence, the momentum $\vec p$ is a constant of motion.
+
+
+
+% subsection spatial_homogeniety_of_schr"odinger_equation (end)
+
+% section spatial_translation (end)

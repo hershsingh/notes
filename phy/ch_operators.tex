@@ -1,0 +1,130 @@
+\chapter{Symmetric, Hermitian and Self-adjoint operators}
+
+\subsection*{Introduction}
+
+The usual definition for an $n \times n$  operator $A$ is
+\begin{align*}
+    A \text{ is}
+    \begin{cases}
+        \text{symmetric } &\text{if } a_{ij} = a_{ji} \text{ for all } i,j = 1,\dotsc,n \\[1em]
+        \text{hermitian/self-adjoint} &\text{if } a_{ij} = a_{ji}^\dagger \text{ for all } i,j = 1,\dotsc,n \\
+    \end{cases}
+\end{align*}
+
+This definition, however, does not lead us lead us anywhere in the case of differential operators. In that case, we need to be more careful with our words and precise in our definitions.
+
+\begin{definition}
+    Given two operators (differential or otherwise) $A$ and $B$ and space $L$ on which they act, if for all $\bra \psi,\ \bra \chi \in L$, we find that
+    \begin{align*}
+        \< \chi | A \psi \> =  \< B \chi | \psi\>
+    \end{align*}
+then $B$ is called the \textbf{adjoint} of A, and is denoted by $A^\dagger$.
+\end{definition}
+
+Lets take an example: the case of the momentum operator $\hat p$. In this case, $L = \mathcal L_2(-\infty, \infty)$, that is, the space of square integrable functions in the domain $(-\infty, \infty)$. The position space representation for the operator 
+\begin{center}
+\begin{tabular}{l|l}
+    $\hat{x} = x\quad$ & $\quad\hat x = \iota \hbar \frac{\partial }{\partial y}$\\
+    $\hat p = -\iota \hbar \frac{\partial }{\partial x}$ & $\quad\hat{p} = p$ \\
+\end{tabular}
+\end{center}
+
+Let $A=-\iota\hbar \frac{\partial }{\partial x}$
+\begin{align*}
+    \<f|g\> &= \int_{-\infty}^{\infty}\! dx f(x)^* g(x)  \\
+    \<f| Ag\> &= \int_{-\infty}^{\infty}\! dx f(x)^* \left( -\iota \hbar \frac{\partial g(x)}{\partial x}\right)  \\
+        &= \iota\hbar f(x)^*g(x)\Big|_{-\infty}^{\infty} - \int_{-\infty}^{\infty}\! dx \left(-\iota \hbar \frac{\partial f(x)}{\partial x}\right)^*g(x) \\
+        &= \<A^\dagger f | g\>
+\end{align*}
+Note that the term evaluated at $-\infty$ and $\infty$ vanishes only because the functions lie in $\mathcal L_2 (-\infty,\infty)$ and therefore must be vanish at infinity.
+
+Hence, the momentum operator is the same as its adjoint operator and is called \textbf{self-adjoint.}
+
+But something more interesting happens when the space is instead $\mathcal L(a,b)$ with $a,b \in \RR$. We then get
+\begin{align*}
+    \<f|Ag\> &= \<A^\dagger f |g \> + \Delta(a,b)
+\end{align*}
+where
+\begin{align*}
+    \Delta(a,b) = \iota(f^*(a)g(a) - f^*(b)g(b)).
+\end{align*}
+Now, if we want the operator $A$ to be self-adjoint, it is easily seen that we must restrict the class of allowed functions to the ones such that $\Delta(a,b)=0$. Two ways to make this happen immediately strike us:
+\begin{enumerate}
+    \item 
+        Choose the domain of $A^\dagger$, to be all functions that vanish at the end points, that is,
+        \begin{align*}
+            \mathcal D_{A^\dagger} &= \{ f(x) \in \mathcal L_2(a,b)\ |\ f(a)=f(b)=0 \}
+        \end{align*}
+        But since the domain of $A$ still remains $\mathcal L_2(a,b)$, $A\neq A^\dagger$! Such a pair of operators which have the same functional representation but different domains are called \textbf{symmetric}.
+    \item
+        Choose the domain of $A$ to be
+        \begin{align*}
+            \mathcal D_{A} &= \{ g(x) \in \mathcal L_2(a,b)\ |\ g(a)=e^{\iota\theta} g(b) \}
+        \end{align*}
+        for some fixed $\theta$. Now 
+        \begin{align*}
+            0 &= \Delta(a,b) \\
+            &= \iota(f^*(a)g(a) - f^*(b)g(b))  \\
+            &= g(a) (f^*(a) - f^*(b) e^{-\iota\theta})  \quad \quad\forall g(a) \\
+            \implies f(a) &= f(b) e^{\iota\theta}
+        \end{align*}
+        which means that the domain of $A^\dagger$ that now makes $\Delta(a,b)=0$ is the same as that of $A$. Since $\mathcal D_A = \mathcal D_{A^\dagger}$ and $\<A^\dagger f|g\> = \<f | A g\>$ for all $f,g \in \mathcal D_A$, we may call $A$ and $A^\dagger$ to be \textbf{self-adjoint}.
+        But there's another interesting twist here. We do not just have one self-adjoint extension of the operator, but a \emph{one parameter $(\theta)$ family of self-adjoint extensions}! That means that for each value of $\theta$, we can a self-adjoint extension of the operator.
+\end{enumerate}
+
+If there's a \emph{unique} self-adjoint extension for an operator, the operator is said to be \textbf{essentially self-adjoint.}
+
+An operator is called \textbf{Hermitian} if it is symmetric and bounded.
+
+\subsection*{Test for self-adjointness}
+
+Let $n_\pm$ be number of solutions to the pair of equations
+\begin{align*}
+    A \bra {f_\pm} &= \pm \iota \bra {f_\pm}
+\end{align*}
+\begin{enumerate}
+    \item 
+        if $n_+ = n_- = 0$, then $A$ is essentially self-adjoint
+    \item
+        if $n_+ = n_- =n \neq 0$, then there is a $n$ parameter family of self-adjoint extensions.
+    \item
+        if $n_+ \neq n_- $, then there is no self-adjoint extension of the operator $A$.
+\end{enumerate}
+
+\textbf{An example of case (3)}: Take the momentum operator on the space $\mathcal L_2 [0, \infty)$:
+\begin{align*}
+    \Delta(0,\infty) &= \iota f^*(0)g(0)
+\end{align*}
+and therefore,
+\begin{align*}
+    \mathcal D_{A^\dagger} &= \{f(x)\in \mathcal L_2[0,\infty)\ |\ f(0)=0\}
+\end{align*}
+Notice that in this case, $\mathcal D_A \subset \mathcal D_{A^\dagger}$ always! So there is no self-adjoint extension.
+If we use the criterion given above,
+\begin{align*}
+    -\iota f'(x) &= \iota f(x) \\
+    f'(x) &= - f(x) \\
+    f(x) &= e^{-x}\quad \in L_2 [0,\infty)
+\end{align*}
+So $n_+ = 0$. The other equation
+\begin{align*}
+    -\iota f'(x) &= -\iota f(x) \\
+    f'(x) &= f(x) \\
+    f(x) &= e^{x}\quad \not\in L_2 [0,\infty)
+\end{align*}
+So, $n_- = 0$. Since $n_- \neq n_+$, there exists no self-adjoint extension for $A$ on the space $\mathcal L_2 [0, \infty)$.
+
+\subsection*{Exercises}
+\begin{enumerate}
+    \item 
+        Prove that the operator 
+        \begin{align*}
+            \hat p_r &= -\iota \left( \frac{\partial }{\partial r} + \frac{d-1}{2r}\right),
+        \end{align*}
+        where $d$ is the number of dimensions of the physical space,
+        is self adjoint on the space $\mathcal L_2 [0, \infty)$. Note that the inner product for this is
+        \begin{align*}
+            \<f|g\> &= \int_{0}^{\infty}\! dr\ r^{d-1} f^*(r) g^*(r)
+        \end{align*}
+\end{enumerate}
+
