@@ -1,0 +1,33 @@
+\documentclass[a4paper]{report}
+\usepackage{amsmath,amssymb}
+\usepackage{hyperref}
+
+\renewcommand\vec\bm
+
+\begin{document}
+\chapter{Classical Statistical Mechanics}
+
+\section{Microcanoical Ensemble}
+\begin{itemize}
+    \item Mechanically and adiabatically isolated - No heat or work input.
+    \item Internal energy, $E$ and the generalized coordinates $\vec x$, are fixed. 
+    \item Macrostate $M \equiv (E,\vec x)$
+\end{itemize}
+
+The correspoding set of mixed microstates form the \emph{microcanonical ensemble}. 
+
+The central postulate of statistical mechancis is that the equilibrium probability distribution is given by
+\begin{equation}
+    p_{(E,\vec x)}(\mu) = \frac{1}{\Omega(E,\vec x)} \cdot 
+    \begin{cases}
+       1\quad & \text{for } \mathcal H(\mu) = E \\
+       0\quad & \text{otherwise}
+    \end{cases}
+\end{equation}
+
+
+The \emph{entropy} of this uniform probability distribution is given by 
+\begin{align*}
+    S(E,\vec x) &= k_B \ln{\Omega(E,\vec x)}
+\end{align*}
+\end{document}
